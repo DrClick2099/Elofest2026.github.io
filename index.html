@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7d2018">
+  <title>Confirma tu asistencia | ELOFEST 2026</title>
+  <style>
+    :root {
+      --vino: #7d2018;
+      --vino-oscuro: #4d130f;
+      --maiz: #ffd84d;
+      --crema: #fff7da;
+      --verde: #377348;
+      --texto: #2e241b;
+      --blanco: #fffdf6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--texto);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,216,77,.25), transparent 28rem),
+        linear-gradient(145deg, #681a14 0%, #9a2c1e 46%, #48200f 100%);
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px 16px;
+    }
+
+    .card {
+      width: min(100%, 920px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(280px, .9fr) minmax(340px, 1.1fr);
+      background: var(--blanco);
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 28px;
+      box-shadow: 0 25px 70px rgba(31,7,4,.35);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      padding: 42px 34px;
+      isolation: isolate;
+      color: white;
+      background:
+        linear-gradient(180deg, rgba(42,10,5,.2), rgba(42,10,5,.87)),
+        url("imagen-elofest.jpg") center / cover no-repeat,
+        linear-gradient(145deg, #e8a926 0%, #7a2518 62%, #3f6c3d 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 999px;
+      background: rgba(255,216,77,.22);
+    }
+
+    .hero::before { width: 230px; height: 230px; right: -90px; top: -70px; }
+    .hero::after { width: 160px; height: 160px; left: -60px; bottom: 70px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      color: var(--vino-oscuro);
+      background: var(--maiz);
+    }
+
+    h1 {
+      margin: 22px 0 0;
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: .86;
+      letter-spacing: -.07em;
+      text-shadow: 0 5px 22px rgba(0,0,0,.22);
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 12px;
+      font-size: .42em;
+      letter-spacing: .12em;
+      color: var(--maiz);
+    }
+
+    .corn {
+      margin: 40px 0 30px;
+      font-size: 4.5rem;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,.25));
+    }
+
+    .event-details {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+      font-size: .96rem;
+    }
+
+    .detail {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .detail b { display: block; color: var(--maiz); }
+    .detail span:first-child { font-size: 1.2rem; }
+
+    .form-panel {
+      padding: 52px clamp(26px, 6vw, 62px);
+      align-self: center;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--vino);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -.04em;
+    }
+
+    .intro {
+      margin: 10px 0 30px;
+      color: #6d5d50;
+      line-height: 1.55;
+    }
+
+    form { display: grid; gap: 21px; }
+
+    label, legend {
+      display: block;
+      margin-bottom: 8px;
+      font-size: .92rem;
+      font-weight: 750;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 14px 15px;
+      color: var(--texto);
+      font: inherit;
+      border: 1.5px solid #d9cdbf;
+      border-radius: 12px;
+      outline: none;
+      background: white;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus {
+      border-color: var(--verde);
+      box-shadow: 0 0 0 4px rgba(55,115,72,.14);
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .radio {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0;
+      padding: 13px;
+      border: 1.5px solid #d9cdbf;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .radio:has(input:checked) {
+      color: var(--vino);
+      border-color: var(--vino);
+      background: #fff1dc;
+    }
+
+    .radio input { accent-color: var(--vino); }
+
+    .help {
+      display: block;
+      margin-top: 7px;
+      color: #7b6d60;
+      font-size: .79rem;
+    }
+
+    button {
+      min-height: 52px;
+      padding: 13px 18px;
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--vino), #a83b22);
+      box-shadow: 0 10px 24px rgba(125,32,24,.23);
+      transition: transform .15s, opacity .2s;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { cursor: wait; opacity: .65; transform: none; }
+
+    .status {
+      display: none;
+      margin: 0;
+      padding: 13px 14px;
+      line-height: 1.4;
+      border-radius: 12px;
+    }
+
+    .status.show { display: block; }
+    .status.success { color: #174b28; background: #e1f5e7; }
+    .status.error { color: #7d2018; background: #fde6e2; }
+
+    .privacy {
+      margin: 18px 0 0;
+      color: #8a7c70;
+      font-size: .74rem;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 0; }
+      .card { grid-template-columns: 1fr; border-radius: 0; }
+      .hero { min-height: 420px; padding: 34px 26px; }
+      .corn { margin: 22px 0 12px; font-size: 3.5rem; }
+      .form-panel { padding: 38px 24px 46px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-label="Confirmación de asistencia a ELOFEST 2026">
+      <header class="hero">
+        <span class="eyebrow">Estás invitado</span>
+        <h1>ELOFEST <span>2026</span></h1>
+        <div class="corn" aria-hidden="true">🌽</div>
+        <div class="event-details">
+          <div class="detail"><span>📅</span><div><b>21 de agosto</b>A partir de las 8:00 p. m.</div></div>
+          <div class="detail"><span>📍</span><div><b>Jesús Rivera Franco #1106</b>Aguascalientes</div></div>
+          <div class="detail"><span>🔥</span><div><b>Elotes asados y cocidos</b>Una noche para compartir</div></div>
+        </div>
+      </header>
+
+      <div class="form-panel">
+        <h2>Confirma tu asistencia</h2>
+        <p class="intro">Ayúdanos a preparar todo. Completa tus datos y dinos cuántas personas vendrán contigo.</p>
+
+        <form id="rsvpForm" novalidate>
+          <div>
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" minlength="3" maxlength="100" required placeholder="Ej. María López Hernández">
+          </div>
+
+          <fieldset>
+            <legend>¿Asistiré?</legend>
+            <div class="options">
+              <label class="radio"><input type="radio" name="asistire" value="Sí" required> Sí, asistiré</label>
+              <label class="radio"><input type="radio" name="asistire" value="No" required> No podré ir</label>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="personas">Número de personas</label>
+            <input id="personas" name="personas" type="number" inputmode="numeric" min="1" max="20" step="1" required value="1">
+            <small class="help" id="personasHelp">Inclúyete en el total. Máximo 20 personas.</small>
+          </div>
+
+          <button id="submitButton" type="submit">Confirmar asistencia</button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="privacy">Tus datos se usarán únicamente para organizar ELOFEST 2026.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Pega aquí la URL que termina en /exec después de publicar tu Apps Script.
+    const GOOGLE_SCRIPT_URL = "PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT";
+
+    const form = document.getElementById("rsvpForm");
+    const submitButton = document.getElementById("submitButton");
+    const statusBox = document.getElementById("status");
+    const personasInput = document.getElementById("personas");
+
+    form.addEventListener("change", (event) => {
+      if (event.target.name !== "asistire") return;
+      const asistira = event.target.value === "Sí";
+      personasInput.disabled = !asistira;
+      personasInput.required = asistira;
+      personasInput.value = asistira ? Math.max(1, Number(personasInput.value) || 1) : 0;
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusBox.className = "status";
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!GOOGLE_SCRIPT_URL.startsWith("https://script.google.com/")) {
+        showStatus("Falta configurar la URL de Google Apps Script en el archivo HTML.", "error");
+        return;
+      }
+
+      const data = new FormData(form);
+      const payload = {
+        nombre: String(data.get("nombre") || "").trim(),
+        asistire: String(data.get("asistire") || ""),
+        personas: Number(data.get("personas") || 0)
+      };
+
+      if (payload.nombre.length < 3 || !["Sí", "No"].includes(payload.asistire)) {
+        showStatus("Revisa la información e inténtalo de nuevo.", "error");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Enviando…";
+
+      try {
+        // text/plain evita una solicitud CORS preliminar y Apps Script recibe el JSON.
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.message || "No se pudo guardar");
+
+        showStatus("¡Gracias! Tu respuesta quedó registrada.", "success");
+        form.reset();
+        personasInput.disabled = false;
+        personasInput.required = true;
+        personasInput.value = 1;
+      } catch (error) {
+        showStatus("No pudimos guardar tu respuesta. Revisa tu conexión e inténtalo otra vez.", "error");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Confirmar asistencia";
+      }
+    });
+
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = `status show ${type}`;
+    }
+  </script>
+</body>
+</html>
