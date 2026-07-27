@@ -24,8 +24,9 @@
       color: var(--texto);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,216,77,.25), transparent 28rem),
-        linear-gradient(145deg, #681a14 0%, #9a2c1e 46%, #48200f 100%);
+        linear-gradient(115deg, rgba(12,16,8,.68), rgba(74,25,9,.30) 52%, rgba(16,17,9,.62)),
+        url("fondo-elofest-premium.png") center / cover fixed no-repeat,
+        #362319;
     }
 
     .page {
@@ -43,7 +44,8 @@
       background: var(--blanco);
       border: 1px solid rgba(255,255,255,.45);
       border-radius: 28px;
-      box-shadow: 0 25px 70px rgba(31,7,4,.35);
+      box-shadow: 0 30px 90px rgba(10,8,3,.58);
+      backdrop-filter: blur(12px);
     }
 
     .hero {
@@ -53,9 +55,9 @@
       isolation: isolate;
       color: white;
       background:
-        linear-gradient(180deg, rgba(42,10,5,.2), rgba(42,10,5,.87)),
-        url("imagen-elofest.jpg") center / cover no-repeat,
-        linear-gradient(145deg, #e8a926 0%, #7a2518 62%, #3f6c3d 100%);
+        radial-gradient(circle at 50% 30%, rgba(255,211,55,.20), transparent 48%),
+        linear-gradient(180deg, rgba(35,16,6,.12), rgba(35,16,6,.84)),
+        linear-gradient(145deg, rgba(230,159,28,.72), rgba(82,32,14,.84) 68%, rgba(38,91,42,.75));
     }
 
     .hero::before,
@@ -98,10 +100,15 @@
       color: var(--maiz);
     }
 
-    .corn {
-      margin: 40px 0 30px;
-      font-size: 4.5rem;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,.25));
+    .event-logo {
+      display: block;
+      width: min(100%, 370px);
+      margin: 28px auto 22px;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 18px 20px rgba(0,0,0,.38))
+        drop-shadow(0 0 18px rgba(255,190,32,.17));
+      transform: rotate(-1.2deg);
     }
 
     .event-details {
@@ -124,6 +131,7 @@
     .form-panel {
       padding: 52px clamp(26px, 6vw, 62px);
       align-self: center;
+      background: rgba(255,253,246,.96);
     }
 
     h2 {
@@ -245,8 +253,12 @@
       .page { padding: 0; }
       .card { grid-template-columns: 1fr; border-radius: 0; }
       .hero { min-height: 420px; padding: 34px 26px; }
-      .corn { margin: 22px 0 12px; font-size: 3.5rem; }
+      .event-logo { width: min(92%, 340px); margin: 18px auto 12px; }
       .form-panel { padding: 38px 24px 46px; }
+      body {
+        background-attachment: scroll;
+        background-position: 58% center;
+      }
     }
   </style>
 </head>
@@ -255,8 +267,7 @@
     <section class="card" aria-label="Confirmación de asistencia a ELOFEST 2026">
       <header class="hero">
         <span class="eyebrow">Estás invitado</span>
-        <h1>ELOFEST <span>2026</span></h1>
-        <div class="corn" aria-hidden="true">🌽</div>
+        <img class="event-logo" src="logo-elofest-transparente.png" alt="ELOFEST 2026 Elotisa — El sabor que nos une">
         <div class="event-details">
           <div class="detail"><span>📅</span><div><b>21 de agosto</b>A partir de las 8:00 p. m.</div></div>
           <div class="detail"><span>📍</span><div><b>Jesús Rivera Franco #1106</b>Aguascalientes</div></div>
